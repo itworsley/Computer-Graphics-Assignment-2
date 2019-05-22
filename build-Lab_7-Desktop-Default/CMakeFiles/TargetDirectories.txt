@@ -1,0 +1,3 @@
+/home/itworsley/Desktop/COSC363/build-Lab_7-Desktop-Default/CMakeFiles/rebuild_cache.dir
+/home/itworsley/Desktop/COSC363/build-Lab_7-Desktop-Default/CMakeFiles/RayTracer.out.dir
+/home/itworsley/Desktop/COSC363/build-Lab_7-Desktop-Default/CMakeFiles/edit_cache.dir

@@ -66,7 +66,6 @@ glm::vec3 trace(Ray ray, int step)
         specularCol = pow(rDotv, 10);
     }
 
-
     if (lDotn < 0 || (shadow.xindex > -1 && shadow.xdist < lDotn)) {
         return ambientCol*materialCol;
     } else {
