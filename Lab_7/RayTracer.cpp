@@ -47,11 +47,16 @@ glm::vec3 trace(Ray ray, int step)
     float lDotn = glm::dot(normalVector, lightVector);
     glm::vec3 materialCol = sceneObjects[ray.xindex]->getColor(); //else return object's colour
 
+    //-- Initialize shadows
+    Ray shadow(ray.xpt, lightVector);
+    shadow.closestPt(sceneObjects);
+
     //-- Initialize reflections
     glm::vec3 viewVector = glm::normalize(-ray.dir);
-    glm::vec3 reflVector = glm::reflect(-lightVector, viewVector);
+    glm::vec3 reflVector = glm::reflect(-lightVector, normalVector);
 
     float rDotv = glm::dot(reflVector, lightVector);
+
 
     float specularCol;
 
@@ -61,13 +66,12 @@ glm::vec3 trace(Ray ray, int step)
         specularCol = pow(rDotv, 10);
     }
 
-    if (lDotn < 0) {
+
+    if (lDotn < 0 || (shadow.xindex > -1 && shadow.xdist < lDotn)) {
         return ambientCol*materialCol;
     } else {
         return (ambientCol+ specularCol) * materialCol + lDotn*(materialCol + specularCol);
     }
-
-    return ambientCol*materialCol + lDotn*materialCol;
 }
 
 //---The main display module -----------------------------------------------------------
@@ -129,7 +133,7 @@ void initialize()
 	//-- Create a pointer to a sphere object
     Sphere *sphere1 = new Sphere(glm::vec3(-5.0, -5.0, -90.0), 15.0, glm::vec3(0, 0, 1)); // Blue
     Sphere *sphere2 = new Sphere(glm::vec3(16.0, 16.0, -90.0), 7.0, glm::vec3(0, 1, 0));  // Green
-    Sphere *sphere3 = new Sphere(glm::vec3(7.0, 7.0, -90.0), 4.0, glm::vec3(1, 0, 0));    // Red
+    Sphere *sphere3 = new Sphere(glm::vec3(5.0, 0.0, -75.0), 4.0, glm::vec3(1, 0, 0));    // Red
 
 	//--Add the above to the list of scene objects.
 
