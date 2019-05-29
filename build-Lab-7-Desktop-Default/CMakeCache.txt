@@ -140,7 +140,7 @@ CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 CMAKE_PREFIX_PATH:STRING=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=lab7
+CMAKE_PROJECT_NAME:STATIC=itw21_assignment2
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -238,6 +238,18 @@ ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 
 //No help, variable specified on the command line.
 QT_QMAKE_EXECUTABLE:STRING=
+
+//Value Computed by CMake
+assignment2_BINARY_DIR:STATIC=/home/itworsley/Desktop/COSC363/build-Lab-7-Desktop-Default
+
+//Value Computed by CMake
+assignment2_SOURCE_DIR:STATIC=/home/itworsley/Desktop/COSC363/Lab 7
+
+//Value Computed by CMake
+itw21_assignment2_BINARY_DIR:STATIC=/home/itworsley/Desktop/COSC363/build-Lab-7-Desktop-Default
+
+//Value Computed by CMake
+itw21_assignment2_SOURCE_DIR:STATIC=/home/itworsley/Desktop/COSC363/Lab 7
 
 //Value Computed by CMake
 lab7_BINARY_DIR:STATIC=/home/itworsley/Desktop/COSC363/build-Lab-7-Desktop-Default

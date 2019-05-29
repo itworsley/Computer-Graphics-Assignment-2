@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+/home/itworsley/Desktop/COSC363/Lab 7/Cylinder.cpp
+Cylinder.h
+/home/itworsley/Desktop/COSC363/Lab 7/Cylinder.h
+math.h
+-
+
+/home/itworsley/Desktop/COSC363/Lab 7/Cylinder.h
+SceneObject.h
+/home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
+
 /home/itworsley/Desktop/COSC363/Lab 7/Plane.cpp
 Plane.h
 /home/itworsley/Desktop/COSC363/Lab 7/Plane.h
@@ -43,6 +53,8 @@ glm/glm.hpp
 -
 Sphere.h
 /home/itworsley/Desktop/COSC363/Lab 7/Sphere.h
+Cylinder.h
+/home/itworsley/Desktop/COSC363/Lab 7/Cylinder.h
 SceneObject.h
 /home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
 Ray.h

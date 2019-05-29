@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="lab7"/>
+		<Option title="itw21_assignment2"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
@@ -85,6 +85,9 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/Cylinder.cpp">
+			<Option target="RayTracer.out"/>
+		</Unit>
+		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/Cylinder.h">
 			<Option target="RayTracer.out"/>
 		</Unit>
 		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/Plane.cpp">

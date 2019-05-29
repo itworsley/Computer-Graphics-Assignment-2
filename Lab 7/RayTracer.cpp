@@ -9,6 +9,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include "Sphere.h"
+#include "Cylinder.h"
 #include "SceneObject.h"
 #include "Ray.h"
 #include <GL/glut.h>
@@ -143,17 +144,21 @@ void initialize()
     Sphere *sphere2 = new Sphere(glm::vec3(5.0, -10.0, -70.0), 3.0, glm::vec3(0, 1, 0));  // Green
     Sphere *sphere3 = new Sphere(glm::vec3(5.0, 6.0, -70.0), 4.0, glm::vec3(1, 0, 0));    // Red
 
+    Cylinder *cylinder = new Cylinder(glm::vec3(0, 0, -100), 5.0f, 10.0f, glm::vec3(0, 1, 1)); // Red
     Plane *plane = new Plane(glm::vec3(-20., -20, -40),  //A
                              glm::vec3(20., -20, -40),   //B
                              glm::vec3(20., -20, -200),  //C
                              glm::vec3(-20., -20, -200), //D
                              glm::vec3(0.5, 0.5, 0));    //Colour
 
-	//--Add the above to the list of scene objects.
 
-    sceneObjects.push_back(sphere1);
-    sceneObjects.push_back(sphere2);
-    sceneObjects.push_back(sphere3);
+    //--Add the above to the list of scene objects.
+
+    //sceneObjects.push_back(sphere1);
+    //sceneObjects.push_back(sphere2);
+    //sceneObjects.push_back(sphere3);
+
+    sceneObjects.push_back(cylinder);
     sceneObjects.push_back(plane);
 }
 
