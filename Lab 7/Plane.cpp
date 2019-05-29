@@ -8,6 +8,7 @@
 
 #include "Plane.h"
 #include <math.h>
+#include <iostream>
 
 
 /**
@@ -17,10 +18,21 @@
 */
 bool Plane::isInside(glm::vec3 pt)
 {
+    glm::vec3 n = normal(pt);
+    glm::vec3 uA = b-a;
+    glm::vec3 uB = c-b;
+    glm::vec3 uC = d-c;
+    glm::vec3 uD = a-d;
 
-	//=== Complete this function ====
-	
-	return true;
+    glm::vec3 vA = pt-a;
+    glm::vec3 vB = pt-b;
+    glm::vec3 vC = pt-c;
+    glm::vec3 vD = pt-d;
+
+    return glm::dot(glm::cross(uA, vA), n) >= 0
+            && glm::dot(glm::cross(uB, vB), n) >= 0
+            && glm::dot(glm::cross(uC, vC), n) >= 0
+            && glm::dot(glm::cross(uD, vD), n) >= 0;
 }
 
 /**
@@ -34,22 +46,19 @@ float Plane::intersect(glm::vec3 posn, glm::vec3 dir)
 	if(fabs(vdotn) < 1.e-4) return -1;
     float t = glm::dot(vdif, n)/vdotn;
 	if(fabs(t) < 0.0001) return -1;
-	glm::vec3 q = posn + dir*t;
-	if(isInside(q)) return t;
+    glm::vec3 q = posn + dir*t;
+    if(isInside(q)) return t;
+
     else return -1;
 }
 
 /**
 * Returns the unit normal vector at a given point.
-* Compute the plane's normal vector using 
-* member variables a, b, c, d.
-* The parameter pt is a dummy variable and is not used.
 */
-glm::vec3 Plane::normal(glm::vec3 pt)
+glm::vec3 Plane::normal(glm::vec3 pos)
 {
-	glm::vec3 n = glm::vec3(0);
-
-	//=== Complete this function ====
+    glm::vec3 crossProduct = normalize(glm::cross((b-a), (d-a)));
+    glm::vec3 n = glm::vec3(crossProduct);
 
     return n;
 }

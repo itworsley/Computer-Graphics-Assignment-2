@@ -1,0 +1,74 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/itworsley/Desktop/COSC363/Lab 7/Plane.cpp
+Plane.h
+/home/itworsley/Desktop/COSC363/Lab 7/Plane.h
+math.h
+-
+iostream
+-
+
+/home/itworsley/Desktop/COSC363/Lab 7/Plane.h
+glm/glm.hpp
+-
+SceneObject.h
+/home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
+
+/home/itworsley/Desktop/COSC363/Lab 7/Ray.cpp
+Ray.h
+/home/itworsley/Desktop/COSC363/Lab 7/Ray.h
+
+/home/itworsley/Desktop/COSC363/Lab 7/Ray.h
+glm/glm.hpp
+-
+vector
+-
+SceneObject.h
+/home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
+
+/home/itworsley/Desktop/COSC363/Lab 7/RayTracer.cpp
+iostream
+-
+cmath
+-
+vector
+-
+glm/glm.hpp
+-
+Sphere.h
+/home/itworsley/Desktop/COSC363/Lab 7/Sphere.h
+SceneObject.h
+/home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
+Ray.h
+/home/itworsley/Desktop/COSC363/Lab 7/Ray.h
+GL/glut.h
+-
+Plane.h
+/home/itworsley/Desktop/COSC363/Lab 7/Plane.h
+
+/home/itworsley/Desktop/COSC363/Lab 7/SceneObject.cpp
+SceneObject.h
+/home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
+
+/home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
+glm/glm.hpp
+-
+
+/home/itworsley/Desktop/COSC363/Lab 7/Sphere.cpp
+Sphere.h
+/home/itworsley/Desktop/COSC363/Lab 7/Sphere.h
+math.h
+-
+
+/home/itworsley/Desktop/COSC363/Lab 7/Sphere.h
+glm/glm.hpp
+-
+SceneObject.h
+/home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
+
