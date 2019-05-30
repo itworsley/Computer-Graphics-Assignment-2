@@ -201,6 +201,54 @@ CMakeFiles/RayTracer.out.dir/Cylinder.cpp.o.provides: CMakeFiles/RayTracer.out.d
 CMakeFiles/RayTracer.out.dir/Cylinder.cpp.o.provides.build: CMakeFiles/RayTracer.out.dir/Cylinder.cpp.o
 
 
+CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o: CMakeFiles/RayTracer.out.dir/flags.make
+CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o: /home/itworsley/Desktop/COSC363/Lab\ 7/TextureBMP.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itworsley/Desktop/COSC363/build-Lab-7-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o -c "/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.cpp"
+
+CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.cpp" > CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.i
+
+CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.cpp" -o CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.s
+
+CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o.requires:
+
+.PHONY : CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o.requires
+
+CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o.provides: CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o.provides.build
+.PHONY : CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o.provides
+
+CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o.provides.build: CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o
+
+
+CMakeFiles/RayTracer.out.dir/Cube.cpp.o: CMakeFiles/RayTracer.out.dir/flags.make
+CMakeFiles/RayTracer.out.dir/Cube.cpp.o: /home/itworsley/Desktop/COSC363/Lab\ 7/Cube.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itworsley/Desktop/COSC363/build-Lab-7-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/RayTracer.out.dir/Cube.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RayTracer.out.dir/Cube.cpp.o -c "/home/itworsley/Desktop/COSC363/Lab 7/Cube.cpp"
+
+CMakeFiles/RayTracer.out.dir/Cube.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RayTracer.out.dir/Cube.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/itworsley/Desktop/COSC363/Lab 7/Cube.cpp" > CMakeFiles/RayTracer.out.dir/Cube.cpp.i
+
+CMakeFiles/RayTracer.out.dir/Cube.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RayTracer.out.dir/Cube.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/itworsley/Desktop/COSC363/Lab 7/Cube.cpp" -o CMakeFiles/RayTracer.out.dir/Cube.cpp.s
+
+CMakeFiles/RayTracer.out.dir/Cube.cpp.o.requires:
+
+.PHONY : CMakeFiles/RayTracer.out.dir/Cube.cpp.o.requires
+
+CMakeFiles/RayTracer.out.dir/Cube.cpp.o.provides: CMakeFiles/RayTracer.out.dir/Cube.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/Cube.cpp.o.provides.build
+.PHONY : CMakeFiles/RayTracer.out.dir/Cube.cpp.o.provides
+
+CMakeFiles/RayTracer.out.dir/Cube.cpp.o.provides.build: CMakeFiles/RayTracer.out.dir/Cube.cpp.o
+
+
 # Object files for target RayTracer.out
 RayTracer_out_OBJECTS = \
 "CMakeFiles/RayTracer.out.dir/RayTracer.cpp.o" \
@@ -208,7 +256,9 @@ RayTracer_out_OBJECTS = \
 "CMakeFiles/RayTracer.out.dir/SceneObject.cpp.o" \
 "CMakeFiles/RayTracer.out.dir/Sphere.cpp.o" \
 "CMakeFiles/RayTracer.out.dir/Plane.cpp.o" \
-"CMakeFiles/RayTracer.out.dir/Cylinder.cpp.o"
+"CMakeFiles/RayTracer.out.dir/Cylinder.cpp.o" \
+"CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o" \
+"CMakeFiles/RayTracer.out.dir/Cube.cpp.o"
 
 # External object files for target RayTracer.out
 RayTracer_out_EXTERNAL_OBJECTS =
@@ -219,12 +269,14 @@ RayTracer.out: CMakeFiles/RayTracer.out.dir/SceneObject.cpp.o
 RayTracer.out: CMakeFiles/RayTracer.out.dir/Sphere.cpp.o
 RayTracer.out: CMakeFiles/RayTracer.out.dir/Plane.cpp.o
 RayTracer.out: CMakeFiles/RayTracer.out.dir/Cylinder.cpp.o
+RayTracer.out: CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o
+RayTracer.out: CMakeFiles/RayTracer.out.dir/Cube.cpp.o
 RayTracer.out: CMakeFiles/RayTracer.out.dir/build.make
 RayTracer.out: /usr/lib/x86_64-linux-gnu/libGL.so
 RayTracer.out: /usr/lib/x86_64-linux-gnu/libGLU.so
 RayTracer.out: /usr/lib/x86_64-linux-gnu/libglut.so
 RayTracer.out: CMakeFiles/RayTracer.out.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itworsley/Desktop/COSC363/build-Lab-7-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable RayTracer.out"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itworsley/Desktop/COSC363/build-Lab-7-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable RayTracer.out"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RayTracer.out.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -238,6 +290,8 @@ CMakeFiles/RayTracer.out.dir/requires: CMakeFiles/RayTracer.out.dir/SceneObject.
 CMakeFiles/RayTracer.out.dir/requires: CMakeFiles/RayTracer.out.dir/Sphere.cpp.o.requires
 CMakeFiles/RayTracer.out.dir/requires: CMakeFiles/RayTracer.out.dir/Plane.cpp.o.requires
 CMakeFiles/RayTracer.out.dir/requires: CMakeFiles/RayTracer.out.dir/Cylinder.cpp.o.requires
+CMakeFiles/RayTracer.out.dir/requires: CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o.requires
+CMakeFiles/RayTracer.out.dir/requires: CMakeFiles/RayTracer.out.dir/Cube.cpp.o.requires
 
 .PHONY : CMakeFiles/RayTracer.out.dir/requires
 

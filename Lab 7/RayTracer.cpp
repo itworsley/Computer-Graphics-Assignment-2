@@ -14,6 +14,8 @@
 #include "Ray.h"
 #include <GL/glut.h>
 #include "Plane.h"
+#include "TextureBMP.h"
+
 using namespace std;
 
 const float WIDTH = 20.0;  
@@ -26,8 +28,8 @@ const float XMAX =  WIDTH * 0.5;
 const float YMIN = -HEIGHT * 0.5;
 const float YMAX =  HEIGHT * 0.5;
 
+TextureBMP texture;
 vector<SceneObject*> sceneObjects;  //A global list containing pointers to objects in the scene
-
 
 //---The most important function in a ray tracer! ---------------------------------- 
 //   Computes the colour value obtained by tracing a ray and finding its 
@@ -80,8 +82,13 @@ glm::vec3 trace(Ray ray, int step)
         colorSum = colorSum + (0.8f*reflectedCol);
     }
 
-    if(ray.xindex == 3) {
-        //texcoords = (ray.xpt.x - a)
+    if(ray.xindex == 0) {
+        glm::vec3 center(5.0, -10.0, -70.0);
+        glm::vec3 d=glm::normalize(ray.xpt - center);
+        float u = (0.5-atan2(d.z, d.x)+M_PI)/(2*M_PI);
+        float v = 0.5+asin(d.y)/M_PI;
+
+        colorSum = texture.getColorAt(u, v);
     }
 
     return colorSum;
@@ -155,11 +162,13 @@ void initialize()
                              glm::vec3(-20., -20, -200), //D
                              glm::vec3(0.5, 0.5, 0));    //Colour
 
+    texture = TextureBMP((char*)"sphere_texture.bmp");
+
 
     //--Add the above to the list of scene objects.
 
     //sceneObjects.push_back(sphere1);
-    //sceneObjects.push_back(sphere2);
+    sceneObjects.push_back(sphere2);
     //sceneObjects.push_back(sphere3);
 
     sceneObjects.push_back(cylinder);

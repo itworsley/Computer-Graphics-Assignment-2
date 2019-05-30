@@ -123,6 +123,33 @@ RayTracer.out/fast:
 	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/build
 .PHONY : RayTracer.out/fast
 
+Cube.o: Cube.cpp.o
+
+.PHONY : Cube.o
+
+# target to build an object file
+Cube.cpp.o:
+	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/Cube.cpp.o
+.PHONY : Cube.cpp.o
+
+Cube.i: Cube.cpp.i
+
+.PHONY : Cube.i
+
+# target to preprocess a source file
+Cube.cpp.i:
+	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/Cube.cpp.i
+.PHONY : Cube.cpp.i
+
+Cube.s: Cube.cpp.s
+
+.PHONY : Cube.s
+
+# target to generate assembly for a file
+Cube.cpp.s:
+	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/Cube.cpp.s
+.PHONY : Cube.cpp.s
+
 Cylinder.o: Cylinder.cpp.o
 
 .PHONY : Cylinder.o
@@ -285,6 +312,33 @@ Sphere.cpp.s:
 	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/Sphere.cpp.s
 .PHONY : Sphere.cpp.s
 
+TextureBMP.o: TextureBMP.cpp.o
+
+.PHONY : TextureBMP.o
+
+# target to build an object file
+TextureBMP.cpp.o:
+	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o
+.PHONY : TextureBMP.cpp.o
+
+TextureBMP.i: TextureBMP.cpp.i
+
+.PHONY : TextureBMP.i
+
+# target to preprocess a source file
+TextureBMP.cpp.i:
+	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.i
+.PHONY : TextureBMP.cpp.i
+
+TextureBMP.s: TextureBMP.cpp.s
+
+.PHONY : TextureBMP.s
+
+# target to generate assembly for a file
+TextureBMP.cpp.s:
+	$(MAKE) -f CMakeFiles/RayTracer.out.dir/build.make CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.s
+.PHONY : TextureBMP.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -294,6 +348,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... RayTracer.out"
 	@echo "... edit_cache"
+	@echo "... Cube.o"
+	@echo "... Cube.i"
+	@echo "... Cube.s"
 	@echo "... Cylinder.o"
 	@echo "... Cylinder.i"
 	@echo "... Cylinder.s"
@@ -312,6 +369,9 @@ help:
 	@echo "... Sphere.o"
 	@echo "... Sphere.i"
 	@echo "... Sphere.s"
+	@echo "... TextureBMP.o"
+	@echo "... TextureBMP.i"
+	@echo "... TextureBMP.s"
 .PHONY : help
 
 

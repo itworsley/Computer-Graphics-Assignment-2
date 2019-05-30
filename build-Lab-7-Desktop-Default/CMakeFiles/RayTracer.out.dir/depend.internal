@@ -20,6 +20,7 @@ CMakeFiles/RayTracer.out.dir/RayTracer.cpp.o
  /home/itworsley/Desktop/COSC363/Lab 7/RayTracer.cpp
  /home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
  /home/itworsley/Desktop/COSC363/Lab 7/Sphere.h
+ /home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.h
 CMakeFiles/RayTracer.out.dir/SceneObject.cpp.o
  /home/itworsley/Desktop/COSC363/Lab 7/SceneObject.cpp
  /home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
@@ -27,3 +28,6 @@ CMakeFiles/RayTracer.out.dir/Sphere.cpp.o
  /home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
  /home/itworsley/Desktop/COSC363/Lab 7/Sphere.cpp
  /home/itworsley/Desktop/COSC363/Lab 7/Sphere.h
+CMakeFiles/RayTracer.out.dir/TextureBMP.cpp.o
+ /home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.cpp
+ /home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.h

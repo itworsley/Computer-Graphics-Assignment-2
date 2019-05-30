@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/Cube.cpp">
+			<Option target="RayTracer.out"/>
+		</Unit>
+		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/Cube.h">
+			<Option target="RayTracer.out"/>
+		</Unit>
 		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/Cylinder.cpp">
 			<Option target="RayTracer.out"/>
 		</Unit>
@@ -117,7 +123,16 @@
 		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/Sphere.h">
 			<Option target="RayTracer.out"/>
 		</Unit>
+		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.cpp">
+			<Option target="RayTracer.out"/>
+		</Unit>
+		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.h">
+			<Option target="RayTracer.out"/>
+		</Unit>
 		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/itworsley/Desktop/COSC363/Lab 7/sphere_texture.bmp">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

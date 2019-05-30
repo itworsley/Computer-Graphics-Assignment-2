@@ -63,6 +63,8 @@ GL/glut.h
 -
 Plane.h
 /home/itworsley/Desktop/COSC363/Lab 7/Plane.h
+TextureBMP.h
+/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.h
 
 /home/itworsley/Desktop/COSC363/Lab 7/SceneObject.cpp
 SceneObject.h
@@ -83,4 +85,16 @@ glm/glm.hpp
 -
 SceneObject.h
 /home/itworsley/Desktop/COSC363/Lab 7/SceneObject.h
+
+/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.cpp
+TextureBMP.h
+/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.h
+
+/home/itworsley/Desktop/COSC363/Lab 7/TextureBMP.h
+iostream
+-
+fstream
+-
+glm/glm.hpp
+-
 
