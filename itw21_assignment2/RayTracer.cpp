@@ -185,36 +185,6 @@ glm::vec3 trace(Ray ray, int step)
     return colorSum;
 }
 
-//-------------------Anti-aliasing(Super-sampling)--------------------------------
-glm::vec3 anti_aliasing(glm::vec3 eye, float pixel_size, float xp, float yp){
-    float fifth = pixel_size * 0.2;
-    float three_quarter = pixel_size * 0.75;
-
-    glm::vec3 colorSum(0);
-    glm::vec3 avg(0.25);
-
-    Ray ray = Ray(eye, glm::vec3(xp + fifth, yp + fifth, -EDIST));
-    ray.normalize();
-    colorSum+=trace(ray,1);
-
-    ray = Ray(eye, glm::vec3(xp + fifth, yp + three_quarter, -EDIST));
-    ray.normalize();
-    colorSum+=trace(ray,1);
-
-    ray = Ray(eye, glm::vec3(xp + three_quarter, yp + fifth, -EDIST));
-    ray.normalize();
-    colorSum+=trace(ray,1);
-
-    ray = Ray(eye, glm::vec3(xp + three_quarter, yp + three_quarter, -EDIST));
-    ray.normalize();
-    colorSum+=trace(ray,1);
-
-    colorSum*= avg;
-    return colorSum;
-
-
-}
-
 //---The main display module -----------------------------------------------------------
 // In a ray tracing application, it just displays the ray traced image by drawing
 // each cell as a quad.
@@ -243,9 +213,8 @@ void display()
 		    glm::vec3 dir(xp+0.5*cellX, yp+0.5*cellY, -EDIST);	//direction of the primary ray
 
 		    Ray ray = Ray(eye, dir);		//Create a ray originating from the camera in the direction 'dir'
-			ray.normalize();				//Normalize the direction of the ray to a unit vector
-            glm::vec3 col = anti_aliasing(eye,cellX,xp,yp); //Anti-aliasing(Super-sampling)
-            //glm::vec3 col = trace (ray, 1); //Trace the primary ray and get the colour value
+            ray.normalize();				//Normalize the direction of the ray to a unit vector
+            glm::vec3 col = trace (ray, 1); //Trace the primary ray and get the colour value
 
 			glColor3f(col.r, col.g, col.b);
 			glVertex2f(xp, yp);				//Draw each cell with its color value
