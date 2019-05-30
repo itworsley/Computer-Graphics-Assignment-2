@@ -52,19 +52,27 @@ float Cylinder::intersect(glm::vec3 posn, glm::vec3 dir) {
 }
 
 glm::vec3 Cylinder::normal(glm::vec3 p) {
-    // the lid of the cylinder
-    if (p.y - base.y - height <= 0.001) {
-        return glm::vec3(0, 1, 0);
-    }
-    // the base of the cylinder
-    else if (p.y - base.y <= 0.001) {
-        return glm::vec3(0, -1, 0);
-    }
-    // the side
-    else {
-        // the angle around the cylinder for this point
-        glm::vec3 n = p - base;
-        n.y = 0;
-        return glm::normalize(n);
-    }
+//    // the lid of the cylinder
+//    if (p.y - base.y - height <= 0.001) {
+//        return glm::vec3(0, 1, 0);
+//    }
+//    // the base of the cylinder
+//    else if (p.y - base.y <= 0.001) {
+//        return glm::vec3(0, -1, 0);
+//    }
+//    // the side
+//    else {
+//        // the angle around the cylinder for this point
+//        glm::vec3 n = p - base;
+//        n.y = 0;
+//        return glm::normalize(n);
+//    }
+    float x = p.x - base.x;
+    float z = p.z - base.z;
+    glm::vec3 n;
+    n.x = x;
+    n.y = 0;
+    n.z = z;
+    return n;
+
 }

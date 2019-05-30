@@ -80,6 +80,10 @@ glm::vec3 trace(Ray ray, int step)
         colorSum = colorSum + (0.8f*reflectedCol);
     }
 
+    if(ray.xindex == 3) {
+        //texcoords = (ray.xpt.x - a)
+    }
+
     return colorSum;
 }
 
