@@ -48,11 +48,11 @@ vector<SceneObject*> sceneObjects;  //A global list containing pointers to objec
 glm::vec3 trace(Ray ray, int step)
 {
 	glm::vec3 backgroundCol(0);
-    glm::vec3 light1(10, 40, -3);  // Light source 1
-    glm::vec3 light2(-10, 40, -3); // Light soure 2
+    glm::vec3 light1(10, 20, -3);  // Light source 1
+    glm::vec3 light2(-20, 40, -3); // Light soure 2
     glm::vec3 ambientCol(0.2);   // Ambient color of light
 
-    float light1Intensity = 0.2;
+    float light1Intensity = 0.5;
 
     ray.closestPt(sceneObjects);		// Compute the closest point of intersetion of objects with the ray
 
@@ -129,7 +129,7 @@ glm::vec3 trace(Ray ray, int step)
     }
     if (lDotn < 0 || (shadow1.xindex > -1 && (shadow1.xdist < distance(ray.xpt, light1)))) {
         colorSum = ambientCol*materialCol;
-        if(shadow1.xindex == 10) {
+        if(shadow1.xindex == 10) { // Shadow of the transparent/refractive sphere is lighter.
             colorSum += (lDotn*materialCol + specularCol)*glm::vec3(0.4) + sceneObjects[10]->getColor()*glm::vec3(0.03);
         }
     } else {
@@ -144,11 +144,11 @@ glm::vec3 trace(Ray ray, int step)
     }
     if (lDotn2 <= 0 || (shadow2.xindex > -1 && (shadow2.xdist < distance(ray.xpt, light2)))) {
         colorSum += ambientCol*materialCol;
-        if(shadow2.xindex == 10) {
+        if(shadow2.xindex == 10) { // Shadow of the transparent/refractive sphere is lighter.
             colorSum += (lDotn2*materialCol + specularCol2)*glm::vec3(0.4) + sceneObjects[10]->getColor()*glm::vec3(0.02);
         }
     } else {
-        colorSum += (ambientCol+ specularCol) * materialCol + lDotn2*(materialCol + specularCol)*(1-light1Intensity);
+        colorSum += (ambientCol+ specularCol2) * materialCol + lDotn2*(materialCol + specularCol2)*(1-light1Intensity);
     }
 
     //-- Reflective sphere
