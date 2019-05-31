@@ -1,1 +1,0 @@
-g++ -Wall -o "%e" RayTracer.cpp Ray.cpp SceneObject.cpp Sphere.cpp Plane.cpp Cylinder.cpp TextureBMP.cpp Tetrahedron.cpp -lm -lGL -lGLU -lglut
