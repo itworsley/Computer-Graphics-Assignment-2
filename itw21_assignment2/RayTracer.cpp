@@ -148,10 +148,10 @@ glm::vec3 trace(Ray ray, int step)
     }
     if (lDotn2 <= 0 || (shadow2.xindex > -1 && (shadow2.xdist < distance(ray.xpt, light2)))) {
         colorSum += ambientCol*materialCol;
-        if(shadow2.xindex == 10) { // Shadow of the transparent/refractive sphere is lighter.
+        if(shadow2.xindex == 10) { // Shadow of the transparent/refractive sphere is lighter, gets the sphere's colour to display as shadow colour.
             colorSum += (lDotn2*materialCol + specularCol2)*glm::vec3(0.1) + sceneObjects[10]->getColor()*glm::vec3(0.09);
         }
-        if(shadow2.xindex == 11) { // Shadow of the transparent sphere is lighter.
+        if(shadow2.xindex == 11) { // Shadow of the transparent sphere is lighter, gets the sphere's colour to display as shadow colour.
             colorSum += (lDotn2*materialCol + specularCol2)*glm::vec3(0.4) + sceneObjects[11]->getColor()*glm::vec3(0.02);
         }
     } else {
@@ -182,7 +182,7 @@ glm::vec3 trace(Ray ray, int step)
         outRay.closestPt(sceneObjects);
         glm::vec3 transparentCol = trace(outRay, step+1);
 
-        colorSum += (colorSum * 0.1f) + (transparentCol * (0.3f));
+        colorSum += (colorSum * 0.3f) + (transparentCol * 0.3f);
     }
 
     //-- Transparent and refractive sphere
@@ -219,7 +219,6 @@ glm::vec3 antiAliasing(glm::vec3 eye, float pixel, float xA, float yA)
     float three_quarters = pixel * 0.75;
 
     glm::vec3 colorSum(0);
-    glm::vec3 avg(0.25);
 
     Ray aRay = Ray(eye, glm::vec3(xA + quarter, yA + quarter, -EDIST));
     aRay.normalize();
@@ -237,7 +236,7 @@ glm::vec3 antiAliasing(glm::vec3 eye, float pixel, float xA, float yA)
     aRay.normalize();
     colorSum += trace(aRay, 1);
 
-    colorSum *= avg;
+    colorSum /= 4;
     return colorSum;
 }
 
@@ -288,41 +287,41 @@ void display()
 //--- Draw a cube with 6 sides -----------------------------
 void drawCube()
 {
-
     Plane *front = new Plane(glm::vec3(10., -15, -100),  //A
-                             glm::vec3(20., -15, -100),   //B
-                             glm::vec3(20., -5, -100),  //C
-                             glm::vec3(10., -5, -100), //D
-                             glm::vec3(0.3, 0.7, 0.7));    //Colour
+                             glm::vec3(20., -15, -100),  //B
+                             glm::vec3(20., -5, -100),   //C
+                             glm::vec3(10., -5, -100),   //D
+                             glm::vec3(0.3, 0.7, 0.7));  //Colour
 
-    Plane *back = new Plane(glm::vec3(10., -15, -110),  //A
-                             glm::vec3(20., -15, -110),   //B
-                             glm::vec3(20., -5, -110),  //C
-                             glm::vec3(10., -5, -110), //D
-                             glm::vec3(0.3, 0.7, 0.7));    //Colour
+    Plane *back = new Plane(glm::vec3(10., -15, -110),   //A
+                             glm::vec3(20., -15, -110),  //B
+                             glm::vec3(20., -5, -110),   //C
+                             glm::vec3(10., -5, -110),   //D
+                             glm::vec3(0.3, 0.7, 0.7));  //Colour
+
     Plane *right = new Plane(glm::vec3(20., -15, -100),  //A
-                             glm::vec3(20., -15, -110),   //B
-                             glm::vec3(20., -5, -110),  //C
-                             glm::vec3(20., -5, -100), //D
-                             glm::vec3(0.3, 0.7, 0.7));    //Colour
+                             glm::vec3(20., -15, -110),  //B
+                             glm::vec3(20., -5, -110),   //C
+                             glm::vec3(20., -5, -100),   //D
+                             glm::vec3(0.3, 0.7, 0.7));  //Colour
 
-    Plane *left = new Plane(glm::vec3(10., -15, -100),  //A
-                             glm::vec3(10., -15, -110),   //B
-                             glm::vec3(10., -5, -110),  //C
-                             glm::vec3(10., -5, -100), //D
-                             glm::vec3(0.3, 0.7, 0.7));    //Colour
+    Plane *left = new Plane(glm::vec3(10., -15, -100),   //A
+                             glm::vec3(10., -15, -110),  //B
+                             glm::vec3(10., -5, -110),   //C
+                             glm::vec3(10., -5, -100),   //D
+                             glm::vec3(0.3, 0.7, 0.7));  //Colour
 
-    Plane *top = new Plane(glm::vec3(10., -5, -100),  //A
+    Plane *top = new Plane(glm::vec3(10., -5, -100),     //A
                              glm::vec3(20., -5, -100),   //B
-                             glm::vec3(20., -5, -110),  //C
-                             glm::vec3(10., -5, -110), //D
-                             glm::vec3(0.3, 0.7, 0.7));    //Colour
+                             glm::vec3(20., -5, -110),   //C
+                             glm::vec3(10., -5, -110),   //D
+                             glm::vec3(0.3, 0.7, 0.7));  //Colour
 
-    Plane *bottom = new Plane(glm::vec3(10., -15, -100),  //A
-                             glm::vec3(20., -15, -100),   //B
+    Plane *bottom = new Plane(glm::vec3(10., -15, -100), //A
+                             glm::vec3(20., -15, -100),  //B
                              glm::vec3(20., -15, -110),  //C
-                             glm::vec3(10., -15, -110), //D
-                             glm::vec3(0.3, 0.7, 0.7));    //Colour
+                             glm::vec3(10., -15, -110),  //D
+                             glm::vec3(0.3, 0.7, 0.7));  //Colour
 
     sceneObjects.push_back(front);
     sceneObjects.push_back(back);
@@ -359,11 +358,11 @@ void initialize()
     glClearColor(0, 0, 0, 1);
 
 	//-- Create a pointer to a sphere object
-    Sphere *sphere1 = new Sphere(glm::vec3(-1.0, -5.0, -90.0), 7.0, glm::vec3(0, 0, 1)); // Blue - reflective
-    Sphere *sphere2 = new Sphere(glm::vec3(5.0, -10.0, -70.0), 3.0, glm::vec3(0, 1, 0));  // Green - textured
-    Sphere *sphere3 = new Sphere(glm::vec3(5.0, 10.0, -70.0), 5.0, glm::vec3(1, 0, 0));    // Red - patterned
-    Sphere *sphere4 = new Sphere(glm::vec3(15., -10., -70.0), 3.0, glm::vec3(1, 0.75, 0.0));    // Yellow - refractive
-    Sphere *sphere5 = new Sphere(glm::vec3(-10., -10., -50.0), 3.0, glm::vec3(0, 0.50, 0.1));    // Green - transparent
+    Sphere *sphere1 = new Sphere(glm::vec3(-1.0, -5.0, -90.0), 7.0, glm::vec3(0, 0, 1));      // Blue - reflective
+    Sphere *sphere2 = new Sphere(glm::vec3(5.0, -10.0, -70.0), 3.0, glm::vec3(0, 1, 0));      // Green - textured
+    Sphere *sphere3 = new Sphere(glm::vec3(5.0, 10.0, -70.0), 5.0, glm::vec3(1, 0, 0));       // Red - patterned
+    Sphere *sphere4 = new Sphere(glm::vec3(15., -10., -70.0), 3.0, glm::vec3(1, 0.75, 0.0));  // Yellow - refractive
+    Sphere *sphere5 = new Sphere(glm::vec3(-10., -10., -50.0), 3.0, glm::vec3(0, 0.50, 0.1)); // Green - transparent
 
     Cylinder *cylinder = new Cylinder(glm::vec3(-10, -20, -100), 2.0f, 20.0f, glm::vec3(0, 1, 1)); // Red
     Plane *plane = new Plane(glm::vec3(-40., -20, -40),  //A

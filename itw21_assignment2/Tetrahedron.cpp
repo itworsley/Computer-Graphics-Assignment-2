@@ -32,7 +32,7 @@ bool Tetrahedron::isInside(glm::vec3 pt)
 }
 
 /**
-* Tetrahedron's intersection method.  The input is a ray (pos, dir).
+* Tetrahedron's intersection method.  The input is a ray (posn, dir).
 */
 float Tetrahedron::intersect(glm::vec3 posn, glm::vec3 dir)
 {

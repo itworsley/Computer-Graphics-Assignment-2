@@ -7,12 +7,13 @@
 #include "Cylinder.h"
 #include <math.h>
 
-
+/**
+* Cylinder's intersection method.  The input is a ray (posn, dir).
+*/
 float Cylinder::intersect(glm::vec3 posn, glm::vec3 dir) {
 
-    // x, y, z coord minus base x,z coord
+    // x, z coord minus base x,z coord
     float x = posn.x - center.x;
-    float y = posn.y - center.y;
     float z = posn.z - center.z;
 
     // Calculate square products (x-xa)**2 + (z-za)**2
@@ -35,11 +36,11 @@ float Cylinder::intersect(glm::vec3 posn, glm::vec3 dir) {
     float ts;
     float tb;
 
-    if (t1 < 0.01) {
+    if (t1 < 0.01f) {
         t1 = -1.0f;
     }
 
-    if (t2 < 0.01) {
+    if (t2 < 0.01f) {
         t2 = -1.0f;
     }
 
@@ -70,7 +71,7 @@ float Cylinder::intersect(glm::vec3 posn, glm::vec3 dir) {
 glm::vec3 Cylinder::normal(glm::vec3 p) {
     float x = p.x - center.x;
     float z = p.z - center.z;
-    glm::vec3 n = glm::vec3(x, 0,z);
+    glm::vec3 n = glm::vec3(x, 0, z);
     return glm::normalize(n);
 
 }
