@@ -212,6 +212,7 @@ glm::vec3 trace(Ray ray, int step)
     return colorSum;
 }
 
+//--- Super Sampling using four rays
 glm::vec3 antiAliasing(glm::vec3 eye, float pixel, float xA, float yA)
 {
     float quarter = pixel * 0.25f;
@@ -224,11 +225,11 @@ glm::vec3 antiAliasing(glm::vec3 eye, float pixel, float xA, float yA)
     aRay.normalize();
     colorSum += trace(aRay, 1);
 
-    aRay = Ray(eye, glm::vec3(xA + quarter, yA + quarter, -EDIST));
+    aRay = Ray(eye, glm::vec3(xA + quarter, yA + three_quarters, -EDIST));
     aRay.normalize();
     colorSum += trace(aRay, 1);
 
-    aRay = Ray(eye, glm::vec3(xA + three_quarters, yA + three_quarters, -EDIST));
+    aRay = Ray(eye, glm::vec3(xA + three_quarters, yA + quarter, -EDIST));
     aRay.normalize();
     colorSum += trace(aRay, 1);
 
