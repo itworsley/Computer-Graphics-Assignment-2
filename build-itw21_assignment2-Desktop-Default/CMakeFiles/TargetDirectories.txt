@@ -1,3 +1,0 @@
-/home/cosc/student/itw21/Documents/COSC363/Assignment/build-itw21_assignment2-Desktop-Default/CMakeFiles/rebuild_cache.dir
-/home/cosc/student/itw21/Documents/COSC363/Assignment/build-itw21_assignment2-Desktop-Default/CMakeFiles/RayTracer.out.dir
-/home/cosc/student/itw21/Documents/COSC363/Assignment/build-itw21_assignment2-Desktop-Default/CMakeFiles/edit_cache.dir

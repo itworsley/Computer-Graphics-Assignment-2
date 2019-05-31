@@ -47,7 +47,7 @@ vector<SceneObject*> sceneObjects;  //A global list containing pointers to objec
 //----------------------------------------------------------------------------------
 glm::vec3 trace(Ray ray, int step)
 {
-	glm::vec3 backgroundCol(0);
+    glm::vec3 backgroundCol(0, 0.75, 1);
     glm::vec3 light1(30, 20, -3);  // Light source 1
     glm::vec3 light2(-10, 30, -3); // Light soure 2
     glm::vec3 ambientCol(0.1);   // Ambient color of light
@@ -212,6 +212,34 @@ glm::vec3 trace(Ray ray, int step)
     return colorSum;
 }
 
+glm::vec3 antiAliasing(glm::vec3 eye, float pixel, float xA, float yA)
+{
+    float quarter = pixel * 0.25f;
+    float three_quarters = pixel * 0.75;
+
+    glm::vec3 colorSum(0);
+    glm::vec3 avg(0.25);
+
+    Ray aRay = Ray(eye, glm::vec3(xA + quarter, yA + quarter, -EDIST));
+    aRay.normalize();
+    colorSum += trace(aRay, 1);
+
+    aRay = Ray(eye, glm::vec3(xA + quarter, yA + quarter, -EDIST));
+    aRay.normalize();
+    colorSum += trace(aRay, 1);
+
+    aRay = Ray(eye, glm::vec3(xA + three_quarters, yA + three_quarters, -EDIST));
+    aRay.normalize();
+    colorSum += trace(aRay, 1);
+
+    aRay = Ray(eye, glm::vec3(xA + three_quarters, yA + three_quarters, -EDIST));
+    aRay.normalize();
+    colorSum += trace(aRay, 1);
+
+    colorSum *= avg;
+    return colorSum;
+}
+
 //---The main display module -----------------------------------------------------------
 // In a ray tracing application, it just displays the ray traced image by drawing
 // each cell as a quad.
@@ -241,7 +269,7 @@ void display()
 
 		    Ray ray = Ray(eye, dir);		//Create a ray originating from the camera in the direction 'dir'
             ray.normalize();				//Normalize the direction of the ray to a unit vector
-            glm::vec3 col = trace (ray, 1); //Trace the primary ray and get the colour value
+            glm::vec3 col = antiAliasing(eye, cellX,  xp, yp);
 
 			glColor3f(col.r, col.g, col.b);
 			glVertex2f(xp, yp);				//Draw each cell with its color value
