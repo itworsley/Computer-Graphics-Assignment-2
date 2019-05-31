@@ -22,7 +22,7 @@ const float WIDTH = 20.0;
 const float HEIGHT = 20.0;
 const float EDIST = 40.0;
 const int NUMDIV = 500;
-const int MAX_STEPS = 15;
+const int MAX_STEPS = 20;
 const float XMIN = -WIDTH * 0.5;
 const float XMAX =  WIDTH * 0.5;
 const float YMIN = -HEIGHT * 0.5;
@@ -48,9 +48,9 @@ vector<SceneObject*> sceneObjects;  //A global list containing pointers to objec
 glm::vec3 trace(Ray ray, int step)
 {
 	glm::vec3 backgroundCol(0);
-    glm::vec3 light1(10, 20, -3);  // Light source 1
-    glm::vec3 light2(-20, 40, -3); // Light soure 2
-    glm::vec3 ambientCol(0.2);   // Ambient color of light
+    glm::vec3 light1(30, 20, -3);  // Light source 1
+    glm::vec3 light2(-10, 30, -3); // Light soure 2
+    glm::vec3 ambientCol(0.1);   // Ambient color of light
 
     float light1Intensity = 0.5;
 
@@ -80,8 +80,8 @@ glm::vec3 trace(Ray ray, int step)
 
     //-- Chequered Plane
     if(ray.xindex == 0) {
-        int moduloX = (int)((ray.xpt.x + 40) / 4) % 2;
-        int moduloZ = (int)((ray.xpt.z + 200) / 4) % 2;
+        int moduloX = (int)((ray.xpt.x + 40) / 2) % 2;
+        int moduloZ = (int)((ray.xpt.z + 200) / 2) % 2;
 
         if ((moduloX && moduloZ) || (!moduloX && !moduloZ)) {
             materialCol = glm::vec3(0, 0, 0);
@@ -92,12 +92,13 @@ glm::vec3 trace(Ray ray, int step)
 
     //-- Patterned Sphere
     if(ray.xindex == 9) {
-        if (int((ray.xpt.x) * sqrt(10.0)) % 2) {
-            materialCol = glm::vec3(sqrt(1), glm::dot(float(atan(ray.xpt.x * 1.5 * M_PI)), float(asin(ray.xpt.x * 0.5 * M_PI))), 0.5);
-        } else if(int(ray.xpt.y) % 2) {
-            materialCol = glm::vec3(1, float(asin(ray.xpt.x * 1.5 * M_PI)), 1);
-        } else {
-            materialCol = glm::vec3(1, 0, float(asin(ray.xpt.x * 1.5 * M_PI)));
+        float scaleX = (ray.xpt.x + ray.xpt.y);
+        float pattern = std::abs(sin(scaleX));
+        if ((int)(pattern * M_PI) % 2) {
+            materialCol = materialCol * pattern;
+        }
+        else {
+            materialCol = glm::vec3(1, 0, 1);
         }
     }
 
@@ -130,7 +131,10 @@ glm::vec3 trace(Ray ray, int step)
     if (lDotn < 0 || (shadow1.xindex > -1 && (shadow1.xdist < distance(ray.xpt, light1)))) {
         colorSum = ambientCol*materialCol;
         if(shadow1.xindex == 10) { // Shadow of the transparent/refractive sphere is lighter.
-            colorSum += (lDotn*materialCol + specularCol)*glm::vec3(0.4) + sceneObjects[10]->getColor()*glm::vec3(0.03);
+            colorSum += (lDotn*materialCol + specularCol)*glm::vec3(0.1) + sceneObjects[10]->getColor()*glm::vec3(0.09);
+        }
+        if(shadow1.xindex == 11) { // Shadow of the transparent/refractive sphere is lighter.
+            colorSum += (lDotn*materialCol + specularCol)*glm::vec3(0.4) + sceneObjects[11]->getColor()*glm::vec3(0.05);
         }
     } else {
         colorSum = (ambientCol+ specularCol) * materialCol + lDotn*(materialCol + specularCol)*light1Intensity;
@@ -145,7 +149,10 @@ glm::vec3 trace(Ray ray, int step)
     if (lDotn2 <= 0 || (shadow2.xindex > -1 && (shadow2.xdist < distance(ray.xpt, light2)))) {
         colorSum += ambientCol*materialCol;
         if(shadow2.xindex == 10) { // Shadow of the transparent/refractive sphere is lighter.
-            colorSum += (lDotn2*materialCol + specularCol2)*glm::vec3(0.4) + sceneObjects[10]->getColor()*glm::vec3(0.02);
+            colorSum += (lDotn2*materialCol + specularCol2)*glm::vec3(0.1) + sceneObjects[10]->getColor()*glm::vec3(0.09);
+        }
+        if(shadow2.xindex == 11) { // Shadow of the transparent sphere is lighter.
+            colorSum += (lDotn2*materialCol + specularCol2)*glm::vec3(0.4) + sceneObjects[11]->getColor()*glm::vec3(0.02);
         }
     } else {
         colorSum += (ambientCol+ specularCol2) * materialCol + lDotn2*(materialCol + specularCol2)*(1-light1Intensity);
@@ -157,6 +164,25 @@ glm::vec3 trace(Ray ray, int step)
         Ray reflectedRay(ray.xpt, reflectedDir);
         glm::vec3 reflectedCol = trace(reflectedRay, step+1); //Recursion!
         colorSum = colorSum + (0.8f*reflectedCol);
+    }
+
+    //-- Transparent sphere
+    if(ray.xindex == 11 && step < MAX_STEPS) {
+        Ray incidentRay(ray.xpt, ray.dir);
+        incidentRay.closestPt(sceneObjects);
+
+        if (incidentRay.xindex == -1) {
+            return backgroundCol;
+        }
+
+        if(ray.xindex != incidentRay.xindex) {
+            colorSum = trace(incidentRay, step+1);
+        }
+        Ray outRay(incidentRay.xpt, incidentRay.dir);
+        outRay.closestPt(sceneObjects);
+        glm::vec3 transparentCol = trace(outRay, step+1);
+
+        colorSum += (colorSum * 0.1f) + (transparentCol * (0.3f));
     }
 
     //-- Transparent and refractive sphere
@@ -177,6 +203,7 @@ glm::vec3 trace(Ray ray, int step)
         glm::vec3 refracDir2 = glm::refract(refracDir1, -normalV1, ETA);
         Ray outRay(incidentRay.xpt, refracDir2);
         outRay.closestPt(sceneObjects);
+
         glm::vec3 transparentCol = trace(outRay, step+1);
 
         colorSum = (colorSum * transparency) + (transparentCol * (transparency));
@@ -303,10 +330,11 @@ void initialize()
     glClearColor(0, 0, 0, 1);
 
 	//-- Create a pointer to a sphere object
-    Sphere *sphere1 = new Sphere(glm::vec3(-1.0, -5.0, -90.0), 7.0, glm::vec3(0, 0, 1)); // Blue
-    Sphere *sphere2 = new Sphere(glm::vec3(5.0, -10.0, -70.0), 3.0, glm::vec3(0, 1, 0));  // Green
-    Sphere *sphere3 = new Sphere(glm::vec3(5.0, 6.0, -70.0), 5.0, glm::vec3(1, 0, 0));    // Red
-    Sphere *sphere4 = new Sphere(glm::vec3(10., -5., -70.0), 3.0, glm::vec3(1, 0.75, 0.0));    // Yellow
+    Sphere *sphere1 = new Sphere(glm::vec3(-1.0, -5.0, -90.0), 7.0, glm::vec3(0, 0, 1)); // Blue - reflective
+    Sphere *sphere2 = new Sphere(glm::vec3(5.0, -10.0, -70.0), 3.0, glm::vec3(0, 1, 0));  // Green - textured
+    Sphere *sphere3 = new Sphere(glm::vec3(5.0, 10.0, -70.0), 5.0, glm::vec3(1, 0, 0));    // Red - patterned
+    Sphere *sphere4 = new Sphere(glm::vec3(15., -10., -70.0), 3.0, glm::vec3(1, 0.75, 0.0));    // Yellow - refractive
+    Sphere *sphere5 = new Sphere(glm::vec3(-10., -10., -50.0), 3.0, glm::vec3(0, 0.50, 0.1));    // Green - transparent
 
     Cylinder *cylinder = new Cylinder(glm::vec3(-10, -20, -100), 2.0f, 20.0f, glm::vec3(0, 1, 1)); // Red
     Plane *plane = new Plane(glm::vec3(-40., -20, -40),  //A
@@ -316,28 +344,24 @@ void initialize()
                              glm::vec3(0.5, 0.5, 0));   //Colour
 
     textureSphere = TextureBMP((char*)"texture_sphere.bmp");
-    textureFloor = TextureBMP((char*)"texture_floor.bmp");
 
 
 
     //--Add the above to the list of scene objects.
 
-    sceneObjects.push_back(plane); //0
+    sceneObjects.push_back(plane); // 0
 
-    drawCube(); //1-6
+    drawCube(); // 1-6
 
     //--Spheres
     sceneObjects.push_back(sphere1);  // Reflective 7
     sceneObjects.push_back(sphere2);  // Textured 8
     sceneObjects.push_back(sphere3);  // Procedural Pattern 9
-    sceneObjects.push_back(sphere4);  // Refracted 10
+    sceneObjects.push_back(sphere4);  // Transparent and Refracted 10
+    sceneObjects.push_back(sphere5);  // Transparent 11
 
-    drawTetrahedron(); // 11-14
-    sceneObjects.push_back(cylinder); // 15
-}
-
-void rotateCamera() {
-
+    drawTetrahedron(); // 12-15
+    sceneObjects.push_back(cylinder); // 16
 }
 
 //--- Event handler for special key events, moving camera through the scene -----
